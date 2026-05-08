@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-  <!-- Custom PreHead code is injected here -->
-  <base href="https://cdn.jsdelivr.net/gh/Reeyuki/frickbears3port@48f2404fdaa17802193c1a74d333eac24d645845/">
-
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <!-- Builtin injector for disabling cache -->
-    
+		    <title>Frickbears 3</title>
 
-	    <title>Frickbears 3</title>
-
-    <!-- Custom PreStyle code is injected here -->
-    
-
-    <style>
+	    <style>
       @-webkit-keyframes rotation {
         from {
           -webkit-transform: rotate(0deg);
@@ -72,12 +63,11 @@
         min-height: 100svh; /* Otherwise contents can be covered by an address bar in Safari on iOS 15 */
         min-width: 100vw;
         background:radial-gradient( 56.63% 56.63% at 50% 43.37%, #1c1726 0%, #060612 100%);
-	        display: flex;
-	        flex-direction: column;
-	        overflow-x: hidden;
-	        place-items: center;
-	        color: #e7e7ee;
-	      }
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        place-items: center;
+      }
 
       body.scrollingDisabled {
         overflow: hidden;
@@ -149,9 +139,9 @@
         }
       }
 
-	      .spinner {
-	        height: 30px;
-	        width: 30px;
+      .spinner {
+        height: 30px;
+        width: 30px;
 
         -webkit-animation: rotation 0.8s linear infinite;
         -moz-animation: rotation 0.8s linear infinite;
@@ -159,40 +149,13 @@
         animation: rotation 0.8s linear infinite;
 
         border: 5px solid #bdff00;
-	        border-top: 5px solid #719900;
-	        border-radius: 100%;
-	      }
+        border-top: 5px solid #719900;
+        border-radius: 100%;
+      }
 
-	      #fullscreenButton {
-	        position: fixed;
-	        top: 12px;
-	        right: 12px;
-	        z-index: 50;
-	        display: inline-flex;
-	        align-items: center;
-	        justify-content: center;
-	        padding: 10px 12px;
-	        border-radius: 10px;
-	        border: 1px solid rgba(255, 255, 255, 0.14);
-	        background: rgba(14, 14, 26, 0.6);
-	        color: #e7e7ee;
-	        backdrop-filter: blur(10px);
-	        cursor: pointer;
-	        -webkit-user-select: none;
-	        user-select: none;
-	      }
-
-	      #fullscreenButton:hover {
-	        background: rgba(18, 18, 34, 0.75);
-	      }
-
-	      #fullscreenButton[hidden] {
-	        display: none;
-	      }
-
-	      .floating-control {
-	        position: absolute;
-	        display: none;
+      .floating-control {
+        position: absolute;
+        display: none;
         border: none;
 
         left: 0px;
@@ -461,39 +424,16 @@
       }
     </style>
 
-    <!-- Custom PostStyle code is injected here -->
-    
-
-    <!-- Builtin injector for injecting flurry analytics code -->
-    
   </head>
 
-  <!-- Custom PostHead code is injected here -->
-  
-
-  <!-- Custom PreBody code is injected here -->
-  
-
   <body>
-
-    <!-- Custom BodyStart code is injected here -->
-    
-
-    <!-- Custom PreCanvas code is injected here -->
-    
-
     <canvas
       class="emscripten"
       id="canvas"
       oncontextmenu="event.preventDefault()"
       tabindex="-1"
-	    >    
-	    </canvas>
-
-	    <button id="fullscreenButton" type="button">Fullscreen</button>
-
-	    <!-- Custom PostCanvas code is injected here -->
-    
+    >    
+    </canvas>
 
     <div id="pauseMenuContainer" hidden>
       <div id="pauseMenuBorder">
@@ -509,14 +449,16 @@
     </div>
     <div class="loading">
       <div class="spinner" id="spinner"></div>
-	      <div class="emscripten" id="status">Downloading...</div>
+      <div class="emscripten" id="status">Downloading...</div>
 
-	      <progress value="0" max="100" id="progress" hidden="1"></progress>
-	    </div>
+      <progress value="0" max="100" id="progress" hidden="1"></progress>
+      <img id="QRCode" class="qrCode" src="runner.svg" alt="URL QR Code" hidden="1"></img>
+      <img id="QR2Code" class="qrCode" src="runnerLocal.svg" alt="URL QR2 Code" hidden="1"></img>
+    </div>
 
     <div class="floating-control" id="multiplayer-stats-container">
       <div class="multiplayer-stats-network" id="multiplayer-stats-network">
-        <svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="graph" aria-labelledby="title" role="img" viewBox="-20 -10 130 140">
+        <svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="graph" aria-labelledby="title" role="img" viewbox="-20 -10 130 140">
           <title id="title">Network stats</title>
           <g class="grid x-grid" id="xGrid">
             <line x1="0" y1="100" x2="100" y2="100"></line>
@@ -583,9 +525,6 @@
       </div>
     </div>
     <div class="output-container" id="output-container" >
-      <!-- Custom Button code is injected here -->
-      
-
       <button class="output-button" id="stats-button" style="visibility: hidden" onclick="toggleElement('multiplayer-stats-container')">
         Toggle Stats
       </button>
@@ -603,18 +542,28 @@
         Toggle configurator
       </button>
     </div>
-    <!-- The wallpaper config is displayed in an iframe to make it possible to use keyboard for entering values (it's consumed by
-        the runner in the original document). -->
-    <iframe class="floating-control" id="wallpaper-config-iframe" src="about:blank"></iframe>
+	    <iframe class="floating-control" id="wallpaper-config-iframe" src="about:blank"></iframe>
 
     <div id="message-container">
       <div id="messages">
       </div>
     </div>
 
-	    <script id="tick-worker" type="javascript/worker">
-	      let running = false;
-	      let stop_called = false;
+   <script async
+     data-ad-client="ca-pub-123"
+     data-ad-frequency-hint="30s"
+     data-adbreak-test="on"
+     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+   </script>
+
+   <script>
+     window.adsbygoogle = window.adsbygoogle || [];
+     const adBreak =  adConfig = function(o) {adsbygoogle.push(o);}
+   </script>
+
+    <script id="tick-worker" type="javascript/worker">
+      let running = false;
+      let stop_called = false;
 
       let intervalMs = 16;
 
@@ -679,60 +628,192 @@
     </script>
 
 	    <script type="text/javascript">
+		      (function () {
+		        const ASSET_BASE = "https://cdn.jsdelivr.net/gh/reeyuki/frickbears3port@664d858164fd6ce6302002b2196f2c3be02656af/";
+		        const SPLIT_SPEC = [["game.unx", 2], ["music.dat", 5], ["voicelines_ingame.dat", 2]];
+		        const SPLITS = Object.fromEntries(SPLIT_SPEC);
+		        const ALIASES = { "game.unc": "game.unx" };
+		        const splitCache = new Map();
+		        const nativeFetch = window.fetch ? window.fetch.bind(window) : null;
+		        const NativeXMLHttpRequest = window.XMLHttpRequest;
+		        const pad2 = function (n) { return String(n).padStart(2, "0"); };
+		        const normalizePath = function (path) {
+		          let p = String(path || "").split("?")[0].split("#")[0].replace(/^\/+/, "");
+		          const locDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/") + 1).replace(/^\/+/, "");
+		          if (locDir && p.startsWith(locDir)) p = p.slice(locDir.length).replace(/^\/+/, "");
+		          const filename = p.split("/").pop();
+		          if (SPLITS[filename] || ALIASES[filename]) return ALIASES[filename] || filename;
+		          return ALIASES[p] || p;
+		        };
+		        const urlInfo = function (input) {
+		          if (typeof input === "string") {
+		            try {
+		              const u = new URL(input, window.location.href);
+		              const base = new URL(ASSET_BASE, window.location.href);
+		              if (u.href.startsWith(base.href)) return { rewrite: true, path: normalizePath(u.href.slice(base.href.length)) };
+		              if (u.origin === window.location.origin) return { rewrite: true, path: normalizePath(u.pathname) };
+		              return { rewrite: false, url: input };
+		            } catch (e) {
+		              return { rewrite: true, path: normalizePath(input) };
+		            }
+		          }
+		          if (input && typeof input.url === "string") return urlInfo(input.url);
+		          return { rewrite: false, url: "" };
+		        };
+	        const toCdnUrl = function (path) { return ASSET_BASE + path; };
+	        const concatArrayBuffers = function (buffers) {
+	          let total = 0;
+	          for (let i = 0; i < buffers.length; i++) total += buffers[i].byteLength;
+	          const out = new Uint8Array(total);
+	          let off = 0;
+	          for (let i = 0; i < buffers.length; i++) { out.set(new Uint8Array(buffers[i]), off); off += buffers[i].byteLength; }
+	          return out.buffer;
+	        };
+		        const fetchSplitArrayBuffer = async function (path, count) {
+		          const p = normalizePath(path);
+		          if (splitCache.has(p)) return splitCache.get(p);
+		          const parts = await Promise.all(Array.from({ length: count }, function (_, i) { return nativeFetch(toCdnUrl(p + pad2(i))).then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.arrayBuffer(); }); }));
+		          const ab = concatArrayBuffers(parts);
+		          splitCache.set(p, ab);
+		          return ab;
+		        };
+		        window.__SPLIT_PREFETCH__ = Promise.all(SPLIT_SPEC.map(function (x) { return fetchSplitArrayBuffer(x[0], x[1]); }));
+	        if (nativeFetch) {
+	          window.fetch = function (resource, init) {
+	            const info = urlInfo(resource);
+	            if (!info.rewrite) return nativeFetch(resource, init);
+	            const count = SPLITS[info.path];
+	            if (count) {
+	              return fetchSplitArrayBuffer(info.path, count).then(function (ab) { return new Response(ab); });
+	            }
+	            if (resource && typeof Request === "function" && resource instanceof Request) {
+	              const method = resource.method || "GET";
+	              const reqInit = { method: method, headers: resource.headers, mode: resource.mode, credentials: resource.credentials, cache: resource.cache, redirect: resource.redirect, referrer: resource.referrer, referrerPolicy: resource.referrerPolicy, integrity: resource.integrity, keepalive: resource.keepalive, signal: resource.signal };
+	              if (method !== "GET" && method !== "HEAD") reqInit.body = resource.body;
+	              return nativeFetch(new Request(toCdnUrl(info.path), reqInit));
+	            }
+	            return nativeFetch(toCdnUrl(info.path), init);
+	          };
+	        }
+	        if (NativeXMLHttpRequest) {
+		          function SplitAwareXMLHttpRequest() {
+		            this._native = new NativeXMLHttpRequest();
+		            this._useNative = true;
+		            this._listeners = {};
+		            this._method = "";
+		            this._url = "";
+		            this._async = true;
+		            this._body = null;
+		            this._responseType = "";
+		            this.readyState = 0;
+		            this.status = 0;
+		            this.statusText = "";
+		            this.responseURL = "";
+		            this.response = null;
+		            this.responseText = "";
+		            this.onreadystatechange = null;
+		            this.onload = null;
+		            this.onerror = null;
+		            this.onprogress = null;
+		            Object.defineProperty(this, "responseType", { configurable: true, enumerable: true, get: function () { return this._responseType; }, set: function (v) { this._responseType = v == null ? "" : String(v); try { this._native.responseType = this._responseType; } catch (e) {} } });
+		            const self = this;
+		            const forwardEvent = function (type) {
+	              const list = self._listeners[type];
+	              if (list) for (let i = 0; i < list.length; i++) { try { list[i].call(self); } catch (e) {} }
+	              const h = self["on" + type];
+	              if (typeof h === "function") { try { h.call(self); } catch (e) {} }
+	            };
+	            this._native.onreadystatechange = function () {
+	              self.readyState = self._native.readyState;
+	              self.status = self._native.status;
+	              self.statusText = self._native.statusText;
+	              try { self.responseURL = self._native.responseURL || self._url; } catch (e) { self.responseURL = self._url; }
+	              try { self.response = self._native.response; } catch (e) { self.response = null; }
+	              try { self.responseText = self._native.responseText || ""; } catch (e) { self.responseText = ""; }
+	              forwardEvent("readystatechange");
+	              if (self.readyState === 4) {
+	                if (self.status >= 200 && self.status < 300) forwardEvent("load"); else forwardEvent("error");
+	              }
+	            };
+	            this._native.onprogress = function () { forwardEvent("progress"); };
+	          }
+	          SplitAwareXMLHttpRequest.prototype.open = function (method, url, async, user, password) {
+	            this._method = method;
+	            this._url = url;
+	            this._async = async !== false;
+	            const info = urlInfo(url);
+	            const count = info.rewrite ? SPLITS[info.path] : 0;
+	            this._useNative = !info.rewrite || !count;
+	            this.readyState = 1;
+	            if (this._useNative) {
+	              this._native.open(method, info.rewrite ? toCdnUrl(info.path) : url, this._async, user, password);
+	              try { this._native.responseType = this.responseType; } catch (e) {}
+	            }
+	            if (typeof this.onreadystatechange === "function") try { this.onreadystatechange(); } catch (e) {}
+	          };
+	          SplitAwareXMLHttpRequest.prototype.send = function (body) {
+	            this._body = body;
+	            if (this._useNative) return this._native.send(body);
+	            const self = this;
+	            const info = urlInfo(this._url);
+	            const count = SPLITS[info.path];
+	            this.readyState = 2;
+	            if (typeof this.onreadystatechange === "function") try { this.onreadystatechange(); } catch (e) {}
+	            fetchSplitArrayBuffer(info.path, count).then(function (ab) {
+	              self.status = 200;
+	              self.statusText = "OK";
+	              self.responseURL = toCdnUrl(info.path);
+	              self.readyState = 4;
+	              if (self.responseType === "arraybuffer") {
+	                self.response = ab;
+	                self.responseText = "";
+	              } else if (self.responseType === "blob") {
+	                self.response = new Blob([ab]);
+	                self.responseText = "";
+	              } else {
+	                const text = new TextDecoder("utf-8").decode(new Uint8Array(ab));
+	                self.responseText = text;
+	                self.response = self.responseType === "json" ? JSON.parse(text) : text;
+	              }
+	              if (typeof self.onreadystatechange === "function") try { self.onreadystatechange(); } catch (e) {}
+	              if (typeof self.onload === "function") try { self.onload(); } catch (e) {}
+	              const list = self._listeners.load;
+	              if (list) for (let i = 0; i < list.length; i++) { try { list[i].call(self); } catch (e) {} }
+	            }).catch(function () {
+	              self.status = 404;
+	              self.statusText = "Not Found";
+	              self.readyState = 4;
+	              if (typeof self.onreadystatechange === "function") try { self.onreadystatechange(); } catch (e) {}
+	              if (typeof self.onerror === "function") try { self.onerror(); } catch (e) {}
+	              const list = self._listeners.error;
+	              if (list) for (let i = 0; i < list.length; i++) { try { list[i].call(self); } catch (e) {} }
+	            });
+	          };
+	          SplitAwareXMLHttpRequest.prototype.abort = function () { if (this._useNative) this._native.abort(); };
+	          SplitAwareXMLHttpRequest.prototype.setRequestHeader = function (h, v) { if (this._useNative) this._native.setRequestHeader(h, v); };
+	          SplitAwareXMLHttpRequest.prototype.getResponseHeader = function (h) { return this._useNative ? this._native.getResponseHeader(h) : null; };
+	          SplitAwareXMLHttpRequest.prototype.getAllResponseHeaders = function () { return this._useNative ? this._native.getAllResponseHeaders() : ""; };
+	          SplitAwareXMLHttpRequest.prototype.overrideMimeType = function (t) { if (this._useNative) this._native.overrideMimeType(t); };
+	          SplitAwareXMLHttpRequest.prototype.addEventListener = function (type, cb) { (this._listeners[type] = this._listeners[type] || []).push(cb); };
+	          SplitAwareXMLHttpRequest.prototype.removeEventListener = function (type, cb) { const a = this._listeners[type]; if (!a) return; const i = a.indexOf(cb); if (i >= 0) a.splice(i, 1); };
+	          window.XMLHttpRequest = SplitAwareXMLHttpRequest;
+	        }
+	        window.__ASSET_BASE__ = ASSET_BASE;
+	        window.__NORMALIZE_PATH__ = normalizePath;
+	      })();
 	      const CHANGE_ASPECT_RATIO = true;
-	      const ASSET_BASE_URL = "https://cdn.jsdelivr.net/gh/reeyuki/frickbears3port@cfa0a1945cc2dcebdf8b93fe80f3d8bc24e15072/";
-	      const SPLIT_PARTS = { "game.unx": 2, "music.dat": 5, "voicelines_death.dat": 2, "voicelines_ingame.dat": 2 };
-	      const SPLIT_URLS = {};
-	      const pad2 = (n) => String(n).padStart(2, "0");
 
-	      const buildSplitUrl = async (name, parts) => {
-	        const buffers = await Promise.all(
-	          Array.from({ length: parts }, (_, i) =>
-	            fetch(ASSET_BASE_URL + name + pad2(i)).then((r) => {
-	              if (!r.ok) throw new Error("Failed to fetch " + name + pad2(i) + " (" + r.status + ")");
-	              return r.arrayBuffer();
-	            })
-	          )
-	        );
-	        const url = URL.createObjectURL(new Blob(buffers, { type: "application/octet-stream" }));
-	        SPLIT_URLS[name] = url;
-	        return url;
-	      };
-
-	      const prepareSplits = () => {
-	        const entries = Object.entries(SPLIT_PARTS);
-	        const core = ["runner.data", "runner.wasm", "audio-worklet.js", "runner.json"];
-	        return Promise.all([
-	          Promise.all(core.map((p) => fetch(ASSET_BASE_URL + p).catch(() => null))),
-	          Promise.all(entries.map(([name, parts]) => buildSplitUrl(name, parts))),
-	        ]);
-	      };
-
-	      var bodyElement = document.getElementsByTagName("body")[0];
-	      var statusElement = document.getElementById("status");
-	      var progressElement = document.getElementById("progress");
-	      var spinnerElement = document.getElementById("spinner");
-	      var canvasElement = document.getElementById("canvas");
-	      var fullscreenButton = document.getElementById("fullscreenButton");
-	      var outputElement = document.getElementById("output");
-	      var outputContainerElement = document.getElementById("output-container");
-	      var pauseMenu = document.getElementById("pauseMenuContainer");
-	      var resumeButton = document.getElementById("resumeButton");
-	      var quitButton = document.getElementById("quitButton");
-	      canvasElement.addEventListener("click", function() { canvasElement.focus(); });
-
-	      const updateFullscreenButton = () => {
-	        fullscreenButton.hidden = !!document.fullscreenElement;
-	      };
-
-	      fullscreenButton.addEventListener("click", () => {
-	        if (document.fullscreenElement) return;
-	        const target = canvasElement.requestFullscreen ? canvasElement : document.documentElement;
-	        target.requestFullscreen();
-	      });
-
-	      document.addEventListener("fullscreenchange", updateFullscreenButton);
-	      updateFullscreenButton();
+      var bodyElement = document.getElementsByTagName("body")[0];
+      var statusElement = document.getElementById("status");
+      var progressElement = document.getElementById("progress");
+      var spinnerElement = document.getElementById("spinner");
+      var canvasElement = document.getElementById("canvas");
+      var outputElement = document.getElementById("output");
+      var outputContainerElement = document.getElementById("output-container");
+      var pauseMenu = document.getElementById("pauseMenuContainer");
+      var resumeButton = document.getElementById("resumeButton");
+      var quitButton = document.getElementById("quitButton");
+      canvasElement.addEventListener("click", function() { canvasElement.focus(); });
       
       const messageContainerElement = document.getElementById("message-container");
       const messagesElement = document.getElementById("messages");
@@ -742,12 +823,12 @@
       const showRollbackMessage = function (message) {
         let messages = "";
         rollbackMessages.push(message);
-        rollbackMessages.forEach(m => messages += "<p>" + m + "<\/p>");
+        rollbackMessages.forEach(m => messages += "<p>" + m + "</p>");
 
         messagesElement.innerHTML = messages;
         messageContainerElement.style.display = 'block';
 
-        if (clearRollbackMessagesTimeoutId !== -1) {
+        if (clearRollbackMessagesTimeoutId === -1) {
           clearTimeout(clearRollbackMessagesTimeoutId);
         }
         clearRollbackMessagesTimeoutId = setTimeout(clearRollbackMessages, 5000);
@@ -761,13 +842,18 @@
 
       var startingHeight, startingWidth;
       var startingAspect;
-      var Module = {
-        preRun: [],
-        postRun: [],
-        print: (function () {
-          var element = document.getElementById("output");
-          if (element) element.value = ""; // clear browser cache
-          return function (text) {
+	      var Module = {
+	        preRun: [],
+	        postRun: [],
+	        locateFile: function (path, prefix) {
+	          const p = String(path).replace(/^\/+/, "");
+	          const normalized = window.__NORMALIZE_PATH__ ? window.__NORMALIZE_PATH__(p) : p;
+	          return window.__ASSET_BASE__ + normalized;
+	        },
+	        print: (function () {
+	          var element = document.getElementById("output");
+	          if (element) element.value = ""; // clear browser cache
+	          return function (text) {
             if (arguments.length > 1)
               text = Array.prototype.slice.call(arguments).join(" ");
             // These replacements are necessary if you render to raw HTML
@@ -791,17 +877,14 @@
             text = Array.prototype.slice.call(arguments).join(" ");
           console.error(text);
         },
-	        canvas: (function () {
-	          var canvas = document.getElementById("canvas");
+        canvas: (function () {
+          var canvas = document.getElementById("canvas");
 
-	          return canvas;
-	        })(),
-	        locateFile: function (path) {
-	          return SPLIT_URLS[path] || ASSET_BASE_URL + path;
-	        },
-	        setStatus: function (text) {
-	          if (!Module.setStatus.last)
-	            Module.setStatus.last = { time: Date.now(), text: "" };
+          return canvas;
+        })(),
+        setStatus: function (text) {
+          if (!Module.setStatus.last)
+            Module.setStatus.last = { time: Date.now(), text: "" };
           if (text === Module.setStatus.last.text) return;
           var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
           var now = Date.now();
@@ -1065,11 +1148,11 @@
 
       function manifestFilesMD5()
       {
-        return [ "3dbcb36cd809dd373f565afc09fcd1d6",
+        return [ "944e4ca42d1f509a495bdec2f2eb3b10",
 "3c9d7e5d0fca31379217e19ef59052dc",
 "9f2d2ae08c0bc749b040f83f74427502",
 "e8f1e8db8cf996f8715a6f2164c2e44e",
-"4ea728b064c37b3b11f67f1c54501933",
+"f044c3efb57412da88a965671b40b2e3",
 "573fecc1a727b9c7b7f7959f70f89de9",
 "eb0a71ead25a38631d0d618d3800fd87",
 "69e1553b9204f997ecd98c73ae3e345c",
@@ -1374,7 +1457,7 @@
 
         let viewStatus = GM_get_view_status();
         if (viewStatus.landscape === true && viewStatus.portrait === false) {
-          window.oprt.lockLandscapeOrientation();
+          window.oprt.lockPortraitOrientation();
         } else if (viewStatus.landscape === false && viewStatus.portrait === true) {
           window.oprt.lockPortraitOrientation();
         }
@@ -1607,11 +1690,11 @@
           '.config-row > textarea { flex: 1; }' +
           '.config-row-label { font-size: 12px; font-weight: 600; }' +
           'button { padding: 8px 16px; border-radius: 4px; background-color: unset; border-color: rgb(199, 159, 234); color: rgb(199, 159, 234); }' +
-          '<\/style>';
-        let configHTML = '<html><head><title><\/title>' + configStyle + '<\/head><body>' +
-          '<div class="wallpaper-header"><h1>Live Wallpaper Configurator<\/h1><button id="wallpaper-reset-parameters">Reset parameters<\/button><\/div>' +
-          '<div class="wallpaper-config" id="wallpaper-config"><\/div>' +
-          '<\/body><\/html>'
+          '</style>';
+        let configHTML = '<html><head><title></title>' + configStyle + '</head><body>' +
+          '<div class="wallpaper-header"><h1>Live Wallpaper Configurator</h1><button id="wallpaper-reset-parameters">Reset parameters</button></div>' +
+          '<div class="wallpaper-config" id="wallpaper-config"></div>' +
+          '</body></html>'
 
         const wallpaperConfigDocument = document.getElementById("wallpaper-config-iframe").contentDocument;
         wallpaperConfigDocument.open();
@@ -1733,9 +1816,9 @@
 
         const labelElem = document.createElement("label");
         labelElem.htmlFor = prefixId + definition.name;
-        labelElem.innerHTML = "<span class='config-row-label'>" + (definition.label || definition.name) + "<\/span>";
+        labelElem.innerHTML = "<span class='config-row-label'>" + (definition.label || definition.name) + "</span>";
         if (definition.description) {
-          labelElem.innerHTML += "<p>" + definition.description + "<\/p>";
+          labelElem.innerHTML += "<p>" + definition.description + "</p>";
         }
         controlElem.appendChild(labelElem);
 
@@ -1908,58 +1991,14 @@
 
         wallpaper_update_config(JSON.stringify(wallpaperConfig));
       }
-	    </script>
-	    <script type="text/javascript">
-	      prepareSplits().then(() => {
-	        const assetSet = typeof manifestFiles === "function" ? new Set(manifestFiles().split(";")) : new Set();
-	        const originalFetch = window.fetch ? window.fetch.bind(window) : null;
-	        if (originalFetch) {
-	          window.fetch = (input, init) => {
-	            const url = typeof input === "string" ? input : input && input.url ? input.url : "";
-	            const parsed = (() => {
-	              try { return new URL(url, window.location.href); } catch (e) { return null; }
-	            })();
-	            const path = parsed ? decodeURIComponent(parsed.pathname.replace(/^\//, "")) : "";
-	            const name = path.includes("/") ? path.split("/").pop() : path;
-	            if (name && SPLIT_URLS[name] && !/\\d\\d$/.test(name)) {
-	              const nextInput = typeof input === "string" ? SPLIT_URLS[name] : new Request(SPLIT_URLS[name], input);
-	              return originalFetch(nextInput, init);
-	            }
-	            if (path && assetSet.has(path)) {
-	              const rewritten = ASSET_BASE_URL + path;
-	              const nextInput = typeof input === "string" ? rewritten : new Request(rewritten, input);
-	              return originalFetch(nextInput, init);
-	            }
-	            return originalFetch(input, init);
-	          };
-	        }
+    </script>
+	    <script async type="text/javascript" src="https://cdn.jsdelivr.net/gh/reeyuki/frickbears3port@4e185a27651d1d331a2e37f40f3d4e7a431b5b03/runner.js"></script>
 
-	        const originalXHROpen = XMLHttpRequest.prototype.open;
-	        XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
-	          const u = String(url);
-	          let parsed = null;
-	          try { parsed = new URL(u, window.location.href); } catch (e) {}
-	          const path = parsed ? decodeURIComponent(parsed.pathname.replace(/^\//, "")) : "";
-	          const name = path.includes("/") ? path.split("/").pop() : path;
-	          if (name && SPLIT_URLS[name] && !/\\d\\d$/.test(name)) {
-	            return originalXHROpen.call(this, method, SPLIT_URLS[name], async, user, password);
-	          }
-	          if (path && assetSet.has(path)) {
-	            return originalXHROpen.call(this, method, ASSET_BASE_URL + path, async, user, password);
-	          }
-	          return originalXHROpen.call(this, method, url, async, user, password);
-	        };
+    <!-- Custom BodyEnd code is injected here -->
+    
 
-	        const script = document.createElement("script");
-	        script.type = "text/javascript";
-	        script.src = ASSET_BASE_URL + "runner.js";
-	        script.crossOrigin = "anonymous";
-	        document.body.appendChild(script);
-	      }).catch((e) => {
-	        spinnerElement.style.display = "none";
-	        statusElement.innerHTML = "Failed to load assets: " + (e && e.message ? e.message : e);
-	      });
-	    </script>
-
-	  </body>
-	</html>
+  </body>
+  
+  <!-- Custom PostBody code is injected here -->
+  
+</html>
